@@ -1,0 +1,1709 @@
+
+==================================================
+FILE PATH: next-env.d.ts
+==================================================
+
+/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+import "./.next/dev/types/routes.d.ts";
+
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/app/api-reference/config/typescript for more information.
+
+
+==================================================
+FILE PATH: next.config.ts
+==================================================
+
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  /* config options here */
+};
+
+export default nextConfig;
+
+
+==================================================
+FILE PATH: package.json
+==================================================
+
+{
+  "name": "portfolio-architect",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.24.7",
+    "lucide-react": "^0.562.0",
+    "next": "16.1.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-icons": "^5.5.0",
+    "tailwind-merge": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.23",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.1",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5"
+  }
+}
+
+
+==================================================
+FILE PATH: README.md
+==================================================
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+==================================================
+FILE PATH: tailwind.config.ts
+==================================================
+
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        card: "var(--card-bg)",
+        "card-border": "var(--card-border)",
+        accent: "var(--accent)",
+        "accent-foreground": "var(--accent-foreground)",
+      },
+      // Adding a custom drop-shadow to match the modal pop-out effect
+      boxShadow: {
+        'neon': '0 0 20px -5px var(--accent)', 
+      }
+    },
+  },
+  plugins: [],
+};
+export default config;
+
+==================================================
+FILE PATH: tsconfig.json
+==================================================
+
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts"
+  ],
+  "exclude": ["node_modules"]
+}
+
+
+==================================================
+FILE PATH: src\app\globals.css
+==================================================
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* LIGHT MODE */
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --card-bg: #f5f5f5;
+  --card-border: #e5e5e5;
+  --accent: #65a30d;
+  /* Darker Lime */
+  --accent-foreground: #ffffff;
+  --muted: #737373;
+  /* Neutral gray for dates/secondary text */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* DARK MODE */
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --card-bg: #121212;
+    /* Slightly darker to make the accent pop */
+    --card-border: #262626;
+    --accent: #d0f500;
+    /* Neon Lime */
+    --accent-foreground: #000000;
+    --muted: #a3a3a3;
+    /* Lighter gray for readability on dark */
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Optional: Background Grid for that 'Tech' look in the screenshots */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+==================================================
+FILE PATH: src\app\layout.tsx
+==================================================
+
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Abhinav Pathak | Backend Architect",
+  description: "Portfolio of Abhinav Pathak, Backend Architect.",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        {children}
+      </body>
+    </html>
+  );
+}
+
+
+==================================================
+FILE PATH: src\app\page.tsx
+==================================================
+
+"use client";
+
+import Hero from "@/components/Hero";
+import Projects from "@/components/Projects";
+import Footer from "@/components/Footer";
+import ContactModal from "@/components/ContactModal";
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
+
+export default function Home() {
+  const [isContactOpen, setIsContactOpen] = useState(false);
+
+  return (
+    <main className="min-h-screen bg-background flex flex-col pb-0">
+      
+      {/* Wrapped Hero in ID for "About" scrolling */}
+      <div id="about">
+        <Hero onOpenContact={() => setIsContactOpen(true)} />
+      </div>
+      
+      {/* Wrapped Projects in ID for "Projects" scrolling */}
+      <div id="projects" className="scroll-mt-24">
+        <Projects />
+      </div>
+      
+      {/* Passed onOpenContact to Footer for "Hire Me" button */}
+      <Footer onOpenContact={() => setIsContactOpen(true)} />
+
+      <AnimatePresence>
+        {isContactOpen && <ContactModal onClose={() => setIsContactOpen(false)} />}
+      </AnimatePresence>
+    </main>
+  );
+}
+
+==================================================
+FILE PATH: src\components\AboutModal.tsx
+==================================================
+
+"use client";
+
+import { motion, AnimatePresence } from "framer-motion";
+import { X, User, Target, Zap, Server, Globe, Database } from "lucide-react";
+
+interface AboutModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+          onClick={onClose}
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            className="w-full max-w-2xl bg-card border border-card-border rounded-2xl shadow-2xl relative overflow-hidden flex flex-col max-h-[85vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* --- HEADER --- */}
+            <div className="p-6 border-b border-card-border flex justify-between items-center bg-card sticky top-0 z-20">
+              <h2 className="text-2xl font-bold text-foreground flex items-center gap-3">
+                <User className="text-accent" /> Professional Profile
+              </h2>
+              <button
+                onClick={onClose}
+                className="p-2 rounded-full text-muted hover:bg-foreground/10 hover:text-foreground transition-colors"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* --- CONTENT --- */}
+            <div className="p-6 md:p-8 overflow-y-auto custom-scrollbar bg-card space-y-8">
+              
+              {/* 1. INTRO / ROLE */}
+              <div className="space-y-3">
+                <p className="text-lg text-foreground leading-relaxed font-medium">
+                  Backend Engineer with <span className="text-accent font-bold">4+ years</span> of experience building high-concurrency microservices. 
+                </p>
+                <p className="text-muted leading-relaxed">
+                  I specialize in the <strong className="text-foreground">Spring Boot</strong> and <strong className="text-foreground">Python</strong> ecosystems, architecting systems that don't just work, but scale effortlessly under heavy load.
+                </p>
+              </div>
+
+              {/* 2. CORE FOCUS AREAS (Grid) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-foreground/5 p-4 rounded-xl border border-card-border">
+                    <div className="flex items-center gap-2 mb-2 text-foreground font-bold">
+                        <Database size={18} className="text-accent" /> Database Optimization
+                    </div>
+                    <p className="text-sm text-muted">Eliminating bottlenecks and resolving N+1 issues to ensure sub-second latency.</p>
+                </div>
+                <div className="bg-foreground/5 p-4 rounded-xl border border-card-border">
+                    <div className="flex items-center gap-2 mb-2 text-foreground font-bold">
+                        <Server size={18} className="text-accent" /> Distributed Systems
+                    </div>
+                    <p className="text-sm text-muted">Implementing robust patterns (Sagas, Circuit Breakers) for resilience.</p>
+                </div>
+              </div>
+
+              {/* 3. IMPACT STATEMENT */}
+              <div className="border-l-4 border-accent pl-4 py-1">
+                 <h3 className="text-foreground font-bold flex items-center gap-2 mb-1">
+                    <Zap size={18} className="text-yellow-500" /> Engineering Impact
+                 </h3>
+                 <p className="text-muted italic">
+                    "Proven track record of reducing latency and operational overhead in production environments serving extensive user bases."
+                 </p>
+              </div>
+
+              {/* 4. TESTING & QUALITY */}
+              <div className="flex items-start gap-3 text-sm text-muted bg-card border border-card-border p-4 rounded-lg">
+                 <Target className="text-accent mt-0.5 shrink-0" size={18} />
+                 <span>
+                    Commitment to <strong>Automated Testing Pipelines</strong> and <strong>CI/CD</strong> to ensure that code quality remains high while delivery speed accelerates.
+                 </span>
+              </div>
+
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+==================================================
+FILE PATH: src\components\ContactModal.tsx
+==================================================
+
+"use client";
+
+import { motion } from "framer-motion";
+import { X, Send, Mail, User, MessageSquare } from "lucide-react";
+import { useEffect, useState } from "react";
+
+interface ContactModalProps {
+  onClose: () => void;
+}
+
+export default function ContactModal({ onClose }: ContactModalProps) {
+  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+
+  // Lock scroll
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = "unset"; };
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("submitting");
+    // Simulate network request
+    setTimeout(() => {
+      setStatus("success");
+      setTimeout(onClose, 2000);
+    }, 1500);
+  };
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+      <motion.div 
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+        onClick={onClose} className="absolute inset-0 bg-black/60 backdrop-blur-sm cursor-pointer"
+      />
+
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        className="relative bg-background border border-card-border w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden"
+      >
+        <button onClick={onClose} className="absolute top-6 right-6 p-2 bg-card border border-card-border rounded-full text-foreground hover:bg-accent hover:text-accent-foreground transition-colors z-10">
+          <X size={20} />
+        </button>
+
+        <div className="p-8 md:p-10">
+          <div className="mb-8">
+            <h2 className="text-3xl font-black uppercase tracking-tighter mb-2">Let's Connect</h2>
+            <p className="text-gray-500">Have a project in mind? Send me a direct message.</p>
+          </div>
+
+          {status === "success" ? (
+            <div className="h-[300px] flex flex-col items-center justify-center text-center text-accent">
+              <Send size={48} className="mb-4 animate-bounce" />
+              <p className="font-bold text-xl">Message Sent!</p>
+              <p className="text-gray-500 text-sm mt-2">I'll get back to you shortly.</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <label className="text-xs font-mono uppercase tracking-widest text-gray-500 ml-1">Your Name</label>
+                <div className="relative">
+                  <User className="absolute left-4 top-3.5 text-gray-500" size={18} />
+                  <input type="text" required className="w-full bg-card border border-card-border rounded-xl py-3 pl-12 pr-4 text-foreground focus:outline-none focus:border-accent transition-colors" placeholder="John Doe" />
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <label className="text-xs font-mono uppercase tracking-widest text-gray-500 ml-1">Your Email</label>
+                <div className="relative">
+                  <Mail className="absolute left-4 top-3.5 text-gray-500" size={18} />
+                  <input type="email" required className="w-full bg-card border border-card-border rounded-xl py-3 pl-12 pr-4 text-foreground focus:outline-none focus:border-accent transition-colors" placeholder="john@example.com" />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-xs font-mono uppercase tracking-widest text-gray-500 ml-1">Message</label>
+                <div className="relative">
+                  <MessageSquare className="absolute left-4 top-3.5 text-gray-500" size={18} />
+                  <textarea required rows={4} className="w-full bg-card border border-card-border rounded-xl py-3 pl-12 pr-4 text-foreground focus:outline-none focus:border-accent transition-colors resize-none" placeholder="Tell me about your project..." />
+                </div>
+              </div>
+
+              <button type="submit" disabled={status === "submitting"} className="w-full bg-accent text-accent-foreground font-bold py-4 rounded-xl mt-4 hover:brightness-110 transition-all flex items-center justify-center gap-2">
+                {status === "submitting" ? (
+                  <span>Sending...</span>
+                ) : (
+                  <>
+                    <Send size={18} /> Send Message
+                  </>
+                )}
+              </button>
+            </form>
+          )}
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+==================================================
+FILE PATH: src\components\ExperienceModal.tsx
+==================================================
+
+"use client";
+
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Briefcase, Trophy, Star, Award, Bot, Zap, ScrollText } from "lucide-react";
+import { EXPERIENCE_DATA, CERTIFICATIONS_DATA } from "@/data/experience";
+
+interface ExperienceModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+// Helper: Auto-selects icon based on achievement text
+const getAchievementIcon = (text: string) => {
+  const lower = text.toLowerCase();
+  if (lower.includes("award") || lower.includes("winner") || lower.includes("top gun")) 
+    return <Trophy className="text-yellow-500" size={18} />;
+  
+  if (lower.includes("appreciation") || lower.includes("star")) 
+    return <Star className="text-orange-500" size={18} />;
+  
+  if (lower.includes("certified") || lower.includes("certification")) 
+    return <Award className="text-blue-400" size={18} />;
+    
+  if (lower.includes("prompt") || lower.includes("ai") || lower.includes("gpt")) 
+    return <Bot className="text-pink-500" size={18} />;
+    
+  return <Zap className="text-zinc-400" size={18} />; // Default fallback
+};
+
+export default function ExperienceModal({ isOpen, onClose }: ExperienceModalProps) {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+          onClick={onClose}
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            // CHANGED: Uses bg-card and border-card-border for theme adaptation
+            className="w-full max-w-4xl bg-card border border-card-border rounded-2xl shadow-2xl relative overflow-hidden flex flex-col max-h-[85vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* --- MODAL HEADER --- */}
+            {/* CHANGED: Removed hardcoded bg-[#0f0f0f], uses bg-card/bg-card-border */}
+            <div className="p-6 md:p-8 border-b border-card-border flex justify-between items-start bg-card sticky top-0 z-20">
+              <div>
+                {/* CHANGED: text-white -> text-foreground, text-neon-green -> text-accent */}
+                <h2 className="text-2xl font-bold text-foreground flex items-center gap-3">
+                  <Briefcase className="text-accent" /> Professional Experience
+                </h2>
+                {/* CHANGED: text-zinc-400 -> text-muted */}
+                <p className="text-muted text-sm mt-1">
+                  Detailed career timeline and key achievements
+                </p>
+              </div>
+              <button
+                onClick={onClose}
+                // CHANGED: Hover states and base colors adapted to theme
+                className="p-2 rounded-full text-muted hover:bg-foreground/10 hover:text-foreground transition-colors"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* --- SCROLLABLE CONTENT --- */}
+            <div className="p-6 md:p-8 overflow-y-auto custom-scrollbar bg-card">
+              <div className="space-y-12">
+                
+                {/* 1. JOB TIMELINE */}
+                {EXPERIENCE_DATA.map((job, index) => (
+                  <div key={index} className="relative pl-8 md:pl-0">
+                    {/* Vertical Timeline Line (Desktop) */}
+                    {/* CHANGED: bg-zinc-800 -> bg-card-border */}
+                    <div className="hidden md:block absolute left-[150px] top-0 bottom-0 w-[1px] bg-card-border"></div>
+
+                    <div className="md:flex gap-12">
+                      {/* Left Column: Date */}
+                      <div className="md:w-[150px] flex-shrink-0 flex flex-col items-start text-left mb-4 md:mb-0">
+                        {/* CHANGED: bg-neon-green/10 -> bg-accent/10, text-neon-green -> text-accent */}
+                        <span className="text-sm font-bold font-mono text-accent bg-accent/10 px-2 py-1 rounded mb-2 inline-block">
+                          {job.period.split("–")[0]}
+                        </span>
+                        {/* CRITICAL FIX: text-muted ensures visibility in both modes */}
+                        <span className="text-xs text-muted font-mono font-semibold">
+                          to {job.period.split("–")[1]}
+                        </span>
+                      </div>
+
+                      {/* Right Column: Content */}
+                      <div className="flex-grow relative">
+                        {/* Timeline Dot */}
+                        {/* CHANGED: bg-neon-green -> bg-accent, ring color to bg-card */}
+                        <div className="hidden md:block absolute -left-[54px] top-1 w-3 h-3 rounded-full bg-accent ring-4 ring-card shadow-[0_0_10px_var(--accent)]"></div>
+
+                        {/* --- COMPANY HEADER --- */}
+                        <div className="flex items-center gap-4 mb-6">
+                            {/* Logo Container */}
+                            <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center p-2 shadow-sm shrink-0 border border-card-border">
+                                <img 
+                                  src={job.logo} 
+                                  alt={job.company} 
+                                  className="w-full h-full object-contain" 
+                                />
+                            </div>
+                            
+                            {/* Text Details */}
+                            <div>
+                                {/* CHANGED: text-white -> text-foreground */}
+                                <h3 className="text-2xl font-bold text-foreground leading-tight">
+                                    {job.company}
+                                </h3>
+                                {/* CHANGED: text-neon-green -> text-accent */}
+                                <div className="text-accent font-medium text-lg">
+                                    {job.role}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* SECTION 1: ENGINEERING IMPACT */}
+                        <div className="mb-6">
+                           {/* CHANGED: text-zinc-500 -> text-muted, border-zinc-800 -> border-card-border */}
+                           <h4 className="text-xs uppercase tracking-widest text-muted font-bold mb-4 border-b border-card-border pb-2">
+                             Engineering Impact
+                           </h4>
+                           <ul className="space-y-3">
+                              {job.responsibilities.map((point, i) => (
+                                // CHANGED: text-zinc-300 -> text-foreground/90 for high readability
+                                <li key={i} className="flex gap-3 text-foreground/90 text-sm leading-relaxed">
+                                  {/* CHANGED: Dot color to accent for consistency */}
+                                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-muted" />
+                                  <span>{point}</span>
+                                </li>
+                              ))}
+                           </ul>
+                        </div>
+
+                        {/* SECTION 2: AWARDS & RECOGNITION (Dynamic Icons) */}
+                        {/* CHANGED: bg-zinc-900/50 -> bg-foreground/5 (generic transparency), border-card-border */}
+                        <div className="bg-foreground/5 border border-card-border rounded-xl p-5">
+                            <h4 className="text-xs uppercase tracking-widest text-accent font-bold mb-3 flex items-center gap-2">
+                                <Award size={16} /> Key Achievements
+                            </h4>
+                            <div className="grid grid-cols-1 gap-3">
+                                {job.achievements.map((achievement, i) => (
+                                    // CHANGED: text-zinc-300 -> text-foreground
+                                    <div key={i} className="flex gap-3 text-foreground/90 text-sm items-start">
+                                        {/* Auto-selected Icon */}
+                                        <div className="mt-0.5 shrink-0">
+                                          {getAchievementIcon(achievement)}
+                                        </div>
+                                        <span className="leading-relaxed">{achievement}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
+                {/* 2. EXTERNAL CERTIFICATIONS (Footer) */}
+                <div className="border-t border-card-border pt-8 mt-8">
+                      <h3 className="text-lg font-bold text-foreground flex items-center gap-2 mb-4">
+                         {/* CHANGED: text-neon-green -> text-accent */}
+                         <ScrollText className="text-accent" size={20} /> 
+                         Other Certifications
+                      </h3>
+                      <div className="flex flex-wrap gap-3">
+                         {CERTIFICATIONS_DATA.map((cert, idx) => (
+                            // CHANGED: bg-zinc-900 -> bg-transparent/bg-card, border-zinc-700 -> border-card-border
+                            <span key={idx} className="px-3 py-1.5 bg-foreground/5 border border-card-border rounded-full text-foreground/80 text-sm hover:border-accent hover:text-foreground transition-colors cursor-default">
+                                {cert}
+                            </span>
+                         ))}
+                      </div>
+                </div>
+
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+==================================================
+FILE PATH: src\components\Footer.tsx
+==================================================
+
+"use client";
+
+import { useState } from "react";
+import UsesModal from "./UsesModal";
+
+interface FooterProps {
+  onOpenContact: () => void;
+}
+
+export default function Footer({ onOpenContact }: FooterProps) {
+  const [isUsesOpen, setIsUsesOpen] = useState(false);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <>
+      <footer className="w-full max-w-7xl mx-auto px-4 md:px-8 py-12 border-t border-card-border mt-24">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-sm font-mono uppercase tracking-widest text-gray-500">
+          
+          {/* Left: Navigation Links */}
+          <div className="flex gap-8">
+            <button 
+              onClick={() => scrollToSection("about")} 
+              className="hover:text-accent transition-colors"
+            >
+              About
+            </button>
+            <button 
+              onClick={() => scrollToSection("projects")} 
+              className="hover:text-accent transition-colors"
+            >
+              Projects
+            </button>
+            <button 
+              onClick={onOpenContact} 
+              className="hover:text-accent transition-colors"
+            >
+              Hire Me
+            </button>
+            <button 
+              onClick={() => setIsUsesOpen(true)} 
+              className="hover:text-accent transition-colors"
+            >
+              Uses
+            </button>
+          </div>
+
+          {/* Right: Copyright */}
+          <div className="text-muted text-sm font-mono uppercase tracking-widest text-right">
+             © 2021 — <span className="text-foreground font-bold">ABHINAV PATHAK</span>
+          </div>
+        </div>
+      </footer>
+
+      <UsesModal isOpen={isUsesOpen} onClose={() => setIsUsesOpen(false)} />
+    </>
+  );
+}
+
+==================================================
+FILE PATH: src\components\Hero.tsx
+==================================================
+
+"use client";
+
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Github, Linkedin, FileText, Mail, Briefcase, GraduationCap, Code2, Terminal, ChevronRight } from "lucide-react";
+import ExperienceModal from "./ExperienceModal"; 
+import TechStackModal from "./TechStackModal";
+import AboutModal from "./AboutModal"; // <--- 1. IMPORT ADDED
+
+interface HeroProps {
+  onOpenContact: () => void;
+}
+
+export default function Hero({ onOpenContact }: HeroProps) {
+  const [isExpModalOpen, setIsExpModalOpen] = useState(false);
+  const [isTechModalOpen, setIsTechModalOpen] = useState(false);
+  const [isAboutModalOpen, setIsAboutModalOpen] = useState(false); // <--- 2. STATE ADDED
+
+  return (
+    <>
+      <section className="w-full max-w-7xl mx-auto p-4 md:p-8 grid grid-cols-1 md:grid-cols-12 gap-6 min-h-fit content-center pb-12">
+        
+        {/* 1. PROFILE CARD */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="md:col-span-4 bg-card border border-card-border rounded-[2rem] p-8 flex flex-col justify-between overflow-hidden relative min-h-[400px]"
+        >
+          <div className="absolute top-0 right-0 w-32 h-32 bg-accent/20 blur-[60px] rounded-full pointer-events-none" />
+
+          <div>
+            <div className="w-24 h-24 md:w-32 md:h-32 bg-gray-700 rounded-full mb-6 border-4 border-accent shadow-xl overflow-hidden relative">
+              <img src="/avatar.png" alt="Abhinav Pathak" className="w-full h-full object-cover" />
+            </div>
+            
+            <h1 className="text-3xl font-bold tracking-tight text-foreground">Abhinav Pathak</h1>
+            <p className="text-accent font-mono mt-2 text-lg">@BackendArchitect</p>
+            <p className="text-gray-500 mt-4 leading-relaxed text-sm">
+              Backend Engineer specializing in high-concurrency Microservices, Spring Boot ecosystems, and distributed system patterns.
+            </p>
+          </div>
+
+          <div className="flex gap-3 mt-8 flex-wrap">
+            <a href="https://github.com/abhinav195" target="_blank" className="p-3 bg-background rounded-full hover:text-accent transition-colors border border-card-border">
+              <Github size={20} />
+            </a>
+            <a href="https://linkedin.com/in/abhinav195" target="_blank" className="p-3 bg-background rounded-full hover:text-accent transition-colors border border-card-border">
+              <Linkedin size={20} />
+            </a>
+            <a href="/resume.pdf" target="_blank" className="p-3 bg-background rounded-full hover:text-accent transition-colors border border-card-border" title="Download Resume">
+              <FileText size={20} />
+            </a>
+            <button onClick={onOpenContact} className="flex-grow px-6 py-3 bg-accent text-accent-foreground rounded-full font-bold hover:brightness-110 transition-all flex items-center justify-center gap-2">
+              <Mail size={18} /> Hire Me
+            </button>
+          </div>
+        </motion.div>
+
+        {/* 2. RIGHT COLUMN CONTAINER */}
+        <div className="md:col-span-8 flex flex-col gap-6">
+          
+          {/* A. TITLE CARD (NOW CLICKABLE) */}
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}
+            onClick={() => setIsAboutModalOpen(true)} // <--- 3. CLICK HANDLER ADDED
+            className="bg-card border border-card-border rounded-[2rem] p-10 flex flex-col justify-center relative overflow-hidden min-h-[200px] cursor-pointer hover:border-accent transition-colors group" // Added interactive classes
+          >
+            {/* Added Chevron for UI consistency */}
+            <div className="absolute top-6 right-6 text-gray-600 group-hover:text-accent transition-colors">
+               <ChevronRight />
+            </div>
+
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.9] text-foreground">
+              BACKEND <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-green-600">ARCHITECT</span>
+            </h2>
+            <p className="mt-4 text-lg text-gray-400 max-w-lg">
+              Building systems that handle millions of requests, not just websites that look pretty.
+            </p>
+          </motion.div>
+
+          {/* B. BENTO GRID FOR DETAILS */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
+              
+              {/* Experience Card (Trigger) */}
+              <motion.div 
+                  initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+                  onClick={() => setIsExpModalOpen(true)}
+                  className="bg-card border border-card-border p-6 rounded-[2rem] hover:border-accent transition-colors group flex flex-col justify-between cursor-pointer relative"
+              >
+                  <div className="absolute top-6 right-6 text-gray-600 group-hover:text-accent transition-colors">
+                    <ChevronRight />
+                  </div>
+                  <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2 bg-background rounded-lg text-accent"><Briefcase size={24} /></div>
+                      <span className="font-mono text-xs uppercase tracking-widest text-gray-500">Experience</span>
+                  </div>
+                  <div>
+                      <h3 className="text-2xl font-bold text-foreground group-hover:text-accent transition-colors">Cognizant</h3>
+                      <p className="text-accent font-medium">Associate Software Developer</p>
+                      <p className="text-gray-500 text-sm mt-1">2021 - Present (4+ Years)</p>
+                  </div>
+              </motion.div>
+
+              {/* Tech Stack Card (Trigger) */}
+              <motion.div 
+                  initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
+                  onClick={() => setIsTechModalOpen(true)}
+                  className="bg-card border border-card-border p-6 rounded-[2rem] hover:border-accent transition-colors group cursor-pointer relative"
+              >
+                  <div className="absolute top-6 right-6 text-gray-600 group-hover:text-accent transition-colors">
+                    <ChevronRight />
+                  </div>
+
+                  <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2 bg-background rounded-lg text-accent"><Code2 size={24} /></div>
+                      <span className="font-mono text-xs uppercase tracking-widest text-gray-500">Tech Arsenal</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                      {["Java 21", "Spring Boot", "Kafka", "Redis", "K8s", "Docker", "PostgreSQL", "AWS"].map(tech => (
+                          <span key={tech} className="px-3 py-1 bg-background border border-card-border rounded-full text-xs font-mono text-gray-400 group-hover:text-foreground group-hover:border-accent/50 transition-colors">
+                              {tech}
+                          </span>
+                      ))}
+                  </div>
+              </motion.div>
+
+               {/* Education Card */}
+               <motion.div 
+                  initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}
+                  className="md:col-span-2 bg-card border border-card-border p-6 rounded-[2rem] hover:border-accent transition-colors group flex items-center justify-between"
+              >
+                  <div className="flex flex-col">
+                      <div className="flex items-center gap-3 mb-2">
+                          <div className="p-2 bg-background rounded-lg text-accent"><GraduationCap size={24} /></div>
+                          <span className="font-mono text-xs uppercase tracking-widest text-gray-500">Education</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-foreground">Bachelor of Technology</h3>
+                      <p className="text-gray-500 text-sm">Computer Science & Engineering</p>
+                  </div>
+                  <div className="hidden md:block">
+                        <Terminal className="text-gray-700 group-hover:text-accent transition-colors opacity-20" size={64} />
+                  </div>
+              </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* MODAL COMPONENTS */}
+      <ExperienceModal isOpen={isExpModalOpen} onClose={() => setIsExpModalOpen(false)} />
+      <TechStackModal isOpen={isTechModalOpen} onClose={() => setIsTechModalOpen(false)} />
+      <AboutModal isOpen={isAboutModalOpen} onClose={() => setIsAboutModalOpen(false)} /> {/* <--- 4. RENDER ADDED */}
+    </>
+  );
+}
+
+==================================================
+FILE PATH: src\components\ProjectModal.tsx
+==================================================
+
+"use client";
+
+import { motion } from "framer-motion";
+import { X, ShieldCheck, Zap, Github, ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Project } from "@/data/projects";
+
+interface ProjectModalProps {
+  project: Project;
+  onClose: () => void;
+}
+
+export default function ProjectModal({ project, onClose }: ProjectModalProps) {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  const hasGallery = project.gallery && project.gallery.length > 0;
+  const images = hasGallery ? project.gallery! : (project.image ? [project.image] : []);
+  const totalSlides = images.length;
+
+  const goToNext = () => setCurrentSlide((prev) => (prev + 1) % totalSlides);
+  const goToPrev = () => setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+  const goToSlide = (index: number) => setCurrentSlide(index);
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (hasGallery && totalSlides > 1) {
+        if (e.key === "ArrowLeft") goToPrev();
+        if (e.key === "ArrowRight") goToNext();
+      }
+    };
+    
+    window.addEventListener("keydown", handleKeyDown);
+    
+    return () => {
+      document.body.style.overflow = "unset";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose, hasGallery, totalSlides]);
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm cursor-pointer"
+      />
+
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        className={`relative bg-background border border-card-border w-full ${project.hasDeepDive ? 'max-w-6xl' : 'max-w-2xl'} max-h-[95vh] overflow-y-auto rounded-3xl shadow-2xl`}
+      >
+        {/* Close Button */}
+        <button 
+          onClick={onClose}
+          className="absolute top-6 right-6 p-2 bg-card border border-card-border rounded-full text-foreground hover:bg-accent hover:text-accent-foreground transition-colors z-50"
+        >
+          <X size={24} />
+        </button>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[400px]">
+          
+          {/* LEFT COLUMN */}
+          <div className={`${project.hasDeepDive ? 'lg:col-span-5 border-r' : 'lg:col-span-12'} p-8 md:p-12 flex flex-col border-card-border`}>
+            <div className="mb-8">
+              <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4 leading-[0.9] text-foreground">
+                {project.title}
+              </h2>
+              <div className="flex items-center gap-3">
+                <span className="w-2 h-2 bg-accent rounded-full animate-pulse"/>
+                <p className="text-accent font-mono text-sm uppercase tracking-widest">
+                  {project.category}
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-8 flex-grow">
+              <div>
+                <h3 className="text-lg font-bold text-foreground flex items-center gap-2 mb-4">
+                  <ShieldCheck className="text-accent" size={20} />
+                  The Engineering Challenge
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg">
+                  {project.fullDescription}
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-sm font-bold text-gray-500 uppercase mb-4 flex items-center gap-2">
+                  <Zap size={16} /> Tech Stack
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((t) => (
+                    <span key={t} className="px-3 py-1 bg-card border border-card-border rounded-md text-xs font-mono text-foreground/80">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Footer: GitHub Link */}
+            <div className="pt-8 mt-8 border-t border-card-border">
+              {project.repoUrl ? (
+                <a 
+                  href={project.repoUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 px-6 py-3 bg-card border-2 border-card-border rounded-xl hover:border-accent hover:bg-accent/5 transition-all group"
+                >
+                  <Github size={20} className="text-foreground group-hover:text-accent transition-colors" />
+                  <span className="font-mono text-sm uppercase tracking-widest text-foreground group-hover:text-accent transition-colors">
+                    View on GitHub
+                  </span>
+                </a>
+              ) : (
+                <div className="flex items-center gap-2 text-muted/60 text-sm font-mono uppercase tracking-widest cursor-help px-4 py-2 bg-card/50 border border-card-border rounded-xl" title="This is a proprietary project from my work at Cognizant">
+                  <ShieldCheck size={16} /> Proprietary Asset
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN: Carousel */}
+          {project.hasDeepDive && images.length > 0 && (
+            <div className="lg:col-span-7 bg-gray-50 dark:bg-[#050505] relative overflow-hidden flex items-center justify-center group min-h-[400px] lg:min-h-auto">
+                
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.05)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:32px_32px]" />
+
+              <div className="relative w-full h-full p-8 md:p-12 flex flex-col items-center justify-center">
+                
+                <div className="relative w-full flex-grow flex items-center justify-center">
+                  <img 
+                    src={images[currentSlide]} 
+                    alt={`${project.title} - Slide ${currentSlide + 1}`} 
+                    className="w-full h-auto max-h-[60vh] object-contain shadow-2xl rounded-lg border border-card-border transition-all duration-500 ease-out"
+                  />
+                </div>
+
+                {totalSlides > 1 && (
+                  <>
+                    <button
+                      onClick={goToPrev}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-card/90 border border-card-border rounded-full text-foreground hover:bg-accent hover:text-accent-foreground transition-all shadow-lg backdrop-blur-sm z-10"
+                    >
+                      <ChevronLeft size={24} />
+                    </button>
+                    
+                    <button
+                      onClick={goToNext}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-card/90 border border-card-border rounded-full text-foreground hover:bg-accent hover:text-accent-foreground transition-all shadow-lg backdrop-blur-sm z-10"
+                    >
+                      <ChevronRight size={24} />
+                    </button>
+                  </>
+                )}
+
+                {totalSlides > 1 && (
+                  <div className="flex gap-2 mt-6 z-10">
+                    {images.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => goToSlide(index)}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          index === currentSlide ? 'bg-accent w-8' : 'bg-card-border hover:bg-accent/50'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                )}
+
+                <div className="absolute bottom-6 right-6 bg-card/80 backdrop-blur border border-card-border px-4 py-2 rounded-full z-10">
+                  <p className="text-[10px] font-mono text-accent uppercase tracking-widest">
+                    {totalSlides > 1 ? `${currentSlide + 1} / ${totalSlides}` : 'Architecture V1.0'}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+
+==================================================
+FILE PATH: src\components\Projects.tsx
+==================================================
+
+"use client";
+
+import { projects } from "@/data/projects";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import ProjectModal from "./ProjectModal";
+
+export default function Projects() {
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const selectedProject = projects.find((p) => p.id === selectedId);
+
+  return (
+    <>
+      <section className="max-w-7xl mx-auto p-4 md:p-8 mt-0 pt-0 mb-24">
+        {/* HEADER */}
+        <h2 className="text-3xl md:text-5xl font-black mb-8 tracking-tighter uppercase">
+          Architectural <span className="text-accent">Case Studies</span>
+        </h2>
+
+        {/* GRID SYSTEM */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
+          {projects.map((project, index) => {
+            // LAYOUT LOGIC MATCHING IMAGE1B8D2C
+            // Index 0 (TicketBlitz): Spans 2 cols, 2 rows → Big Left Block
+            // Index 1 (Library) + 2 (Parking): Will naturally stack in Col 3 Row 1 & 2
+            // Index 3, 4, 5: Will naturally flow to Row 3
+            let gridClass = "";
+            if (index === 0) {
+              gridClass = "md:col-span-2 md:row-span-2 min-h-[500px]";
+            } else {
+              gridClass = "md:col-span-1 min-h-[250px]";
+            }
+
+            return (
+              <div
+                key={project.id}
+                onClick={() => {
+                  if (project.hasDeepDive) setSelectedId(project.id);
+                }}
+                className={`group relative bg-card border border-card-border rounded-3xl p-8 transition-all duration-300 flex flex-col justify-between ${
+                  project.hasDeepDive ? 'cursor-pointer hover:border-accent hover:shadow-lg hover:shadow-accent/5' : 'cursor-default'
+                } ${gridClass}`}
+              >
+                {/* Hover Icon Top Right - Only for clickable projects */}
+                {project.hasDeepDive && (
+                  <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                    <ArrowUpRight className="text-accent" size={32} />
+                  </div>
+                )}
+
+                {/* TOP CONTENT */}
+                <div>
+                  {/* Tech Pills */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="text-[10px] md:text-xs font-mono border border-gray-700 rounded-full px-2 py-1 text-gray-400 group-hover:text-accent group-hover:border-accent transition-colors"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Title + Category */}
+                  <h3 className="text-2xl md:text-3xl font-bold mb-2 group-hover:text-accent transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-accent font-mono text-xs uppercase tracking-widest mb-4">
+                    {project.category}
+                  </p>
+
+                  {/* Description */}
+                  <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-6 max-w-lg">
+                    {project.shortDescription}
+                  </p>
+                </div>
+
+                {/* BOTTOM: Stats + Footer */}
+                <div>
+                  {/* STATS - Checkmarks */}
+                  <div className="grid grid-cols-3 gap-2 border-t border-gray-800 pt-6 mb-6">
+                    {project.stats.map((stat, i) => (
+                      <div key={i} className="flex flex-col">
+                        <span className="text-accent font-bold text-xs block mb-1">✓</span>
+                        <span className="text-[10px] md:text-xs text-foreground font-medium leading-tight">
+                          {stat}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* FOOTER: GitHub + View Details */}
+                  <div className="flex items-center justify-between pt-4 border-t border-card-border">
+                    {/* GitHub Link */}
+                    {project.repoUrl ? (
+                      <a
+                        href={project.repoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="flex items-center gap-2 text-sm font-mono uppercase tracking-widest text-gray-500 hover:text-accent transition-colors"
+                      >
+                        <ExternalLink size={14} /> GITHUB
+                      </a>
+                    ) : (
+                      <span className="text-xs font-mono uppercase tracking-widest text-gray-600 opacity-40">
+                        PROPRIETARY
+                      </span>
+                    )}
+
+                    {/* View Details (only for deep dive projects) */}
+                    {project.hasDeepDive && (
+                      <span className="text-xs font-mono uppercase tracking-widest text-accent">
+                        VIEW DETAILS →
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* MODAL */}
+      <AnimatePresence>
+        {selectedId && selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedId(null)}
+          />
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+
+
+==================================================
+FILE PATH: src\components\TechStackModal.tsx
+==================================================
+
+"use client";
+
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Cpu, CheckCircle2 } from "lucide-react";
+import { TECH_CATEGORIES } from "@/data/techStack";
+
+interface TechStackModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function TechStackModal({ isOpen, onClose }: TechStackModalProps) {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+          onClick={onClose}
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            // THEME: Uses bg-card and border-card-border
+            className="w-full max-w-4xl bg-card border border-card-border rounded-2xl shadow-2xl relative overflow-hidden flex flex-col max-h-[85vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* --- HEADER --- */}
+            <div className="p-6 border-b border-card-border flex justify-between items-center bg-card sticky top-0 z-20">
+              <div>
+                <h2 className="text-2xl font-bold text-foreground flex items-center gap-3">
+                  <Cpu className="text-accent" /> Technical Arsenal
+                </h2>
+                <p className="text-muted text-sm mt-1">
+                  The tools and technologies I use to build scalable systems
+                </p>
+              </div>
+              <button
+                onClick={onClose}
+                className="p-2 rounded-full text-muted hover:bg-foreground/10 hover:text-foreground transition-colors"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* --- CONTENT --- */}
+            <div className="p-6 md:p-8 overflow-y-auto custom-scrollbar bg-card">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                {TECH_CATEGORIES.map((category) => (
+                  <div 
+                    key={category.id} 
+                    // THEME: Slight background contrast for cards using foreground opacity
+                    className="bg-foreground/5 border border-card-border rounded-xl p-5 hover:border-accent/50 transition-colors group"
+                  >
+                    {/* Category Title */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2 rounded-lg bg-card border border-card-border text-accent">
+                        <category.icon size={20} />
+                      </div>
+                      <h3 className="text-lg font-bold text-foreground">
+                        {category.title}
+                      </h3>
+                    </div>
+
+                    {/* Skill Badges */}
+                    <div className="flex flex-wrap gap-2">
+                      {category.skills.map((skill, idx) => (
+                        <span 
+                          key={idx} 
+                          // THEME: Badges adapt to light/dark automatically
+                          className="
+                            inline-flex items-center gap-2 px-3 py-1.5 
+                            bg-card border border-card-border rounded-md 
+                            text-sm font-medium text-foreground/80
+                            hover:text-accent hover:border-accent
+                            transition-all duration-200 cursor-default
+                            hover:shadow-[0_0_10px_-4px_var(--accent)]
+                          "
+                        >
+                           {/* Render the specific icon for the skill */}
+                           <skill.icon size={16} className="text-muted group-hover:text-accent transition-colors" />
+                           {skill.name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+
+              </div>
+              
+              {/* Footer Note */}
+              <div className="mt-8 text-center border-t border-card-border pt-6">
+                <p className="text-sm text-muted">
+                  <CheckCircle2 size={14} className="inline mr-1 text-accent"/>
+                  Always learning and exploring new technologies.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+==================================================
+FILE PATH: src\components\UsesModal.tsx
+==================================================
+
+"use client";
+
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Laptop, Smartphone, Terminal, Coffee, Settings, Monitor } from "lucide-react";
+
+interface UsesModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function UsesModal({ isOpen, onClose }: UsesModalProps) {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+          onClick={onClose}
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            className="w-full max-w-2xl bg-card border border-card-border rounded-2xl shadow-2xl relative overflow-hidden flex flex-col max-h-[85vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* HEADER */}
+            <div className="p-6 border-b border-card-border flex justify-between items-center bg-card sticky top-0 z-20">
+              <h2 className="text-2xl font-bold text-foreground flex items-center gap-3">
+                <Settings className="text-accent" /> /uses
+              </h2>
+              <button
+                onClick={onClose}
+                className="p-2 rounded-full text-muted hover:bg-foreground/10 hover:text-foreground transition-colors"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* CONTENT */}
+            <div className="p-6 md:p-8 overflow-y-auto custom-scrollbar bg-card space-y-8">
+              
+              {/* Hardware */}
+              <section className="space-y-4">
+                <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
+                    <Monitor size={18} className="text-accent"/> Hardware
+                </h3>
+                <ul className="space-y-3">
+                    <li className="flex items-start gap-3 text-sm text-muted">
+                        <Laptop size={16} className="mt-1 text-foreground/50"/>
+                        <span>
+                            <strong className="text-foreground">Asus Zenbook 14 OLED:</strong> Sharp OLED contrast for long coding sessions, with enough thermal headroom to compile heavy Spring microservices locally.
+                        </span>
+                    </li>
+                    <li className="flex items-start gap-3 text-sm text-muted">
+                        <Smartphone size={16} className="mt-1 text-foreground/50"/>
+                        <span>
+                            <strong className="text-foreground">Mobile Ecosystem:</strong> iPhone 16 & Moto Tab 60 Pro for seamless documentation reading and triage.
+                        </span>
+                    </li>
+                </ul>
+              </section>
+
+              {/* Software */}
+              <section className="space-y-4">
+                <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
+                    <Terminal size={18} className="text-accent"/> Software & Dev Tools
+                </h3>
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <li className="bg-foreground/5 p-3 rounded border border-card-border text-sm text-foreground">
+                        <strong>IntelliJ IDEA Ultimate</strong> <br/> <span className="text-muted text-xs">Java/Spring Development.</span>
+                    </li>
+                    <li className="bg-foreground/5 p-3 rounded border border-card-border text-sm text-foreground">
+                        <strong>Postman</strong> <br/> <span className="text-muted text-xs">API Testing.</span>
+                    </li>
+                    <li className="bg-foreground/5 p-3 rounded border border-card-border text-sm text-foreground">
+                        <strong>Docker Desktop</strong> <br/> <span className="text-muted text-xs">Container management.</span>
+                    </li>
+                    <li className="bg-foreground/5 p-3 rounded border border-card-border text-sm text-foreground">
+                        <strong>Obsidian</strong> <br/> <span className="text-muted text-xs">Knowledge base.</span>
+                    </li>
+                </ul>
+              </section>
+
+               {/* Productivity */}
+               <section className="space-y-4">
+                <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
+                    <Coffee size={18} className="text-accent"/> Productivity
+                </h3>
+                <p className="text-sm text-muted leading-relaxed">
+                    Minimalist setup. <strong>Dark Mode</strong> everywhere. <strong>JetBrains Mono</strong> font.
+                </p>
+              </section>
+
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+==================================================
+FILE PATH: src\data\experience.ts
+==================================================
+
+export const EXPERIENCE_DATA = [
+    {
+      company: "Cognizant", 
+      role: "Associate Software Developer",
+      period: "Aug 2021 – Present",
+      logo: "/cognizant-icon.png", 
+      description: "Specializing in high-performance backend systems.",
+      responsibilities: [
+        "Engineered scalable Spring Boot 3 backend components supporting a platform user base of 300k+ and 5000+ DAU, handling ~500 req/s secured via Spring Security.",
+        "Deployed microservices on Azure Kubernetes Service (AKS) with HPA, ensuring 99.9% availability using Circuit Breakers and Zipkin tracing.",
+        "Optimized MySQL performance by resolving N+1 bottlenecks and restructuring data processing with Java Stream API, reducing latency by 45%.",
+        "Reduced API load times by 40% through Redis distributed caching and Spring Data JPA projections.",
+        "Built an automated test reporting pipeline integrating LLM APIs (increasing accuracy to 85%) and maintained a 99.5% uptime OTA pipeline."
+      ],
+      achievements: [
+        "MLEU Top Guns Award 2023: Critical contributions to complex delivery pipelines.",
+        "Client Appreciation: Recognized for resolving high-priority production incidents (3M engagement).",
+        "Certified Java Prompt Developer (Cognizant).",
+        "Cognizant Certified Software Engineer (Java Core Cluster).",
+        "Prompt Engineering Foundation Certification."
+        ]
+    }
+];
+
+export const CERTIFICATIONS_DATA = [
+    "Infosys Certified Software Engineer (InfyTQ 2020)"
+];
+
+==================================================
+FILE PATH: src\data\projects.ts
+==================================================
+
+export interface Project {
+  id: string;
+  title: string;
+  category: string;
+  repoUrl?: string;
+  tech: string[];
+  stats: string[];
+  shortDescription: string;
+  fullDescription: string;
+  hasDeepDive: boolean;
+  image?: string;
+  gallery?: string[];
+}
+
+export const projects: Project[] = [
+  {
+    id: "ticketblitz",
+    title: "TicketBlitz",
+    category: "High-Concurrency Event Engine",
+    repoUrl: "https://github.com/abhinav195/TicketBlitz",
+    tech: ["Java 21", "Spring Boot 3", "Kafka", "Redis", "K8s"],
+    stats: ["10k Concurrent Users", "Pessimistic Locking", "0% Overselling"],
+    shortDescription: "Production-grade distributed system designed to handle flash-sale traffic spikes.",
+    fullDescription: "Architected a 7-service microservices ecosystem on Kubernetes. Replaced Optimistic Locking with Pessimistic Locking (SELECT ... FOR UPDATE) to guarantee 0% over-selling during stress tests of 10k concurrent users. Implemented a Choreography Saga pattern with Kafka for distributed payments and automated compensations.",
+    hasDeepDive: true,
+    image: "/ticketblitz-arch.png"
+  },
+  {
+    id: "fault-tolerant-rag",
+    title: "Fault-Tolerant RAG Bot",
+    category: "Generative AI & Autonomous Agents",
+    repoUrl: "https://github.com/abhinav195/fault-tolerant-rag-bot",
+    tech: ["FastAPI", "LangGraph", "ChromaDB", "Docker", "Gemini 1.5"],
+    stats: ["Self-Healing Auth", "Circular Key Rotation", "Hallucination Guard"],
+    shortDescription: "A resilient RAG system with self-correcting logic, automatic API key rotation, and graph-based validation workflows.",
+    fullDescription: "Built a production-grade autonomous agent using LangGraph state machines. Features a 'Self-Healing' brain that detects rate limits (429 errors) and automatically rotates between multiple Google API keys. Implemented a 3-stage validation pipeline (Search → Summarize → Verify) to prevent hallucinations, with automatic retries for low-quality retrieval.",
+    hasDeepDive: true,
+    image: "/rag-flow-1.png",
+    gallery: ["/rag-flow-1.png", "/rag-flow-2.png", "/rag-flow-3.png"]
+  },
+  {
+    id: "library-system",
+    title: "Dist. Library Core",
+    category: "Microservices Ecosystem",
+    repoUrl: "https://github.com/abhinav195/Library-Management-System",
+    tech: ["Spring Cloud", "OpenFeign", "Zipkin", "Resilience4j"],
+    stats: ["4 Microservices", "Centralized Auth", "Circuit Breakers"],
+    shortDescription: "Fault-tolerant microservice ecosystem with gateway routing and inter-service communication.",
+    fullDescription: "Designed a 4-service backend (Users, Books, Issues, Gateway) using Spring Cloud. Implemented centralized JWT authentication at the Gateway level. Utilized OpenFeign for declarative inter-service communication and Resilience4j for circuit breaking to prevent cascading failures.",
+    hasDeepDive: true,
+    image: "/librarymanagementsystem_arch.png"
+  },
+  {
+    id: "smart-parking",
+    title: "Smart Parking API",
+    category: "DevOps & Observability",
+    repoUrl: "https://github.com/abhinav195/Smart-parking",
+    tech: ["Docker", "PostgreSQL", "Flyway", "Actuator"],
+    stats: ["Structured Logs", "Correlation IDs", "80% Test Cov"],
+    shortDescription: "Containerized REST API with structured logging, distributed tracing, and database migrations.",
+    fullDescription: "Engineered a production-style REST API for parking management. Implemented structured JSON logging with Correlation IDs for end-to-end tracing. Managed database schema changes using Flyway migrations and ensured system reliability with custom Actuator health indicators.",
+    hasDeepDive: true,
+    image: "/smartparking_arch.png"
+  },
+  {
+    id: "meditrack",
+    title: "MediTrack Logic",
+    category: "Algorithmic Core",
+    repoUrl: "https://github.com/abhinav195/MediTrack",
+    tech: ["Java 21", "Algorithms", "File I/O", "Validation"],
+    stats: ["Smart Scheduling", "Conflict Resolution", "Symptom Matching"],
+    shortDescription: "Intelligent appointment booking engine with auto-rescheduling and specialist routing algorithms.",
+    fullDescription: "Built a robust logic engine for clinic operations. Developed a 'Smart Booking' algorithm that automatically resolves schedule conflicts and handles weekend rollovers. Implemented a 'Symptom Matching' router to direct patients to the correct specialist based on input keywords.",
+    hasDeepDive: true,
+    image: "/meditrack_arch.png"
+  },
+  {
+    id: "mqtt-iot",
+    title: "IoT Telemetry Engine",
+    category: "Real-Time Systems",
+    // NO repoUrl - Company project
+    tech: ["Python3", "MQTT", "ECU-Test", "InfluxDB"],
+    stats: ["1k+ Msgs/Day", "Sub-2s Latency", "Real-Time"],
+    shortDescription: "Robust MQTT message handler for real-time automobile telemetry ingestion.",
+    fullDescription: "Engineered a high-throughput telemetry ingestion pipeline. Processes 1,000+ daily telemetry messages from ECU-Test units with sub-2-second latency. Integrated with InfluxDB for real-time time-series visualization and monitoring.",
+    hasDeepDive: false // 🔒 Not clickable
+  },
+  {
+    id: "dspace-auto",
+    title: "DSpace Automation",
+    category: "Python Pipeline",
+    // NO repoUrl - Company project
+    tech: ["Python3", "Pandas", "Automation", "ETL"],
+    stats: ["8hrs Saved/Wk", "Auto-Metadata", "Zero Manual Ops"],
+    shortDescription: "Automated data processing pipeline eliminating manual workflows for library archives.",
+    fullDescription: "Developed a Python-based ETL pipeline to automate complex library archiving workflows. Replaced manual metadata entry with automated script-based extraction and formatting, reducing weekly processing time by 8 hours and eliminating human error.",
+    hasDeepDive: false // 🔒 Not clickable
+  }
+];
+
+
+==================================================
+FILE PATH: src\data\techStack.ts
+==================================================
+
+import {
+  Code2, Database, Cloud, Terminal, Coffee, Code, Server,
+  Leaf, Shield, Boxes, Network, Zap, Container, ShipWheel,
+  RefreshCw, TestTube, Search, Bot, Brain, MessageSquare,
+  LucideIcon
+} from "lucide-react";
+
+export interface Skill {
+  name: string;
+  icon: LucideIcon;
+}
+
+export interface TechCategory {
+  id: string;
+  title: string;
+  icon: LucideIcon;
+  skills: Skill[];
+}
+
+export const TECH_CATEGORIES: TechCategory[] = [
+  {
+    id: "backend",
+    title: "Languages & Frameworks",
+    icon: Code2,
+    skills: [
+      { name: "Java 21", icon: Coffee },
+      { name: "Python", icon: Code },
+      { name: "SQL", icon: Database },
+      { name: "Spring Boot 3", icon: Leaf },
+      { name: "Microservices", icon: Boxes },
+      { name: "Resilience4j", icon: Shield },
+    ],
+  },
+  {
+    id: "database",
+    title: "Databases & Streaming",
+    icon: Database,
+    skills: [
+      { name: "PostgreSQL", icon: Server },
+      { name: "MySQL", icon: Server },
+      { name: "MongoDB", icon: Database },
+      { name: "Redis", icon: Zap },
+      { name: "Kafka", icon: Network },
+    ],
+  },
+  {
+    id: "devops",
+    title: "Cloud & DevOps",
+    icon: Cloud,
+    skills: [
+      { name: "Docker", icon: Container },
+      { name: "Kubernetes (AKS)", icon: ShipWheel },
+      { name: "CI/CD", icon: RefreshCw },
+      { name: "Testcontainers", icon: TestTube },
+      { name: "Jaeger/Zipkin", icon: Search },
+    ],
+  },
+  {
+    id: "ai",
+    title: "AI & Automation",
+    icon: Bot,
+    skills: [
+      { name: "Generative AI (LLMs)", icon: Brain },
+      { name: "RAG", icon: Database },
+      { name: "Prompt Engineering", icon: MessageSquare },
+    ],
+  },
+];

@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* LIGHT MODE */
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --card-bg: #f5f5f5;
+  --card-border: #e5e5e5;
+  --accent: #65a30d;
+  /* Darker Lime */
+  --accent-foreground: #ffffff;
+  --muted: #737373;
+  /* Neutral gray for dates/secondary text */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* DARK MODE */
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --card-bg: #121212;
+    /* Slightly darker to make the accent pop */
+    --card-border: #262626;
+    --accent: #d0f500;
+    /* Neon Lime */
+    --accent-foreground: #000000;
+    --muted: #a3a3a3;
+    /* Lighter gray for readability on dark */
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Optional: Background Grid for that 'Tech' look in the screenshots */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
