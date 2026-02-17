@@ -37,8 +37,8 @@ export const projects: Project[] = [
     fullDescription: "Built an 8-service polyglot microservices ecosystem (7 Java + 1 Python) orchestrated on Kubernetes. Implemented Database-per-Service pattern with 4 PostgreSQL instances and Redis caching. Replaced Optimistic Locking with Pessimistic Locking (SELECT ... FOR UPDATE) to guarantee 0% over-selling under 10k concurrent users. Designed Choreography Saga pattern with Kafka for distributed consistency (Booking → Payment → Notification) with automated compensating transactions. Integrated a 'Survival Mode' recommendation engine using Python FastAPI, LangChain, and pgVector to serve personalized event suggestions when primary inventory services are under load. Hardened for production with Resilience4j (Circuit Breakers, Rate Limiters, Retry mechanisms) and validated with Testcontainers achieving 90% code coverage.",
     hasDeepDive: true,
     image: "/ticketblitz-arch.png",
-    gallery: ["/ticketblitz-arch.png","/attacker.gif", "/defender.gif"],
-    demoGifs: ["/attacker.gif", "/defender.gif"]
+    gallery: ["/ticketblitz-arch.png", "/Attacker.gif", "/Defender.gif"],
+    demoGifs: ["/Attacker.gif", "/Defender.gif"]
   },
   {
     id: "fault-tolerant-rag",
