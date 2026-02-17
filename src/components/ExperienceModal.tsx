@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Briefcase, Trophy, Star, Award, Bot, Zap, ScrollText } from "lucide-react";
-import { EXPERIENCE_DATA, CERTIFICATIONS_DATA } from "@/data/experience";
+import { EXPERIENCE_DATA } from "@/data/experience";
 
 interface ExperienceModalProps {
   isOpen: boolean;
