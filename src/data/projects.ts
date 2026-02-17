@@ -20,18 +20,18 @@ export const projects: Project[] = [
     title: "TicketBlitz",
     category: "Polyglot Event Ticketing Platform",
     repoUrl: "https://github.com/abhinav195/TicketBlitz",
-    tech: ["Java 21", "Spring Boot 3", "Kafka", "Redis", "K8s", "Python", "FastAPI", "LangChain", "PostgreSQL", "Stripe"],
+    tech: ["Java 21", "Spring Boot 3", "Kafka", "Redis", "LangChain", "K8s", "Python", "FastAPI", "PostgreSQL", "Stripe"],
     stats: [
       "8 Microservices",
       "Pessimistic Locking",
       "0% Overselling",
+      "LangChain",
       "Survival Mode AI",
       "Kafka Sagas",
       "Resilience4j",
       "Circuit Breakers",
       "Rate Limiting",
-      "Testcontainers",
-      "90% Coverage"
+      "Testcontainers"
     ],
     shortDescription: "Polyglot, production-grade distributed system combining Java Spring Boot with Python FastAPI and LangChain for high-performance AI operations.",
     fullDescription: "Built an 8-service polyglot microservices ecosystem (7 Java + 1 Python) orchestrated on Kubernetes. Implemented Database-per-Service pattern with 4 PostgreSQL instances and Redis caching. Replaced Optimistic Locking with Pessimistic Locking (SELECT ... FOR UPDATE) to guarantee 0% over-selling under 10k concurrent users. Designed Choreography Saga pattern with Kafka for distributed consistency (Booking → Payment → Notification) with automated compensating transactions. Integrated a 'Survival Mode' recommendation engine using Python FastAPI, LangChain, and pgVector to serve personalized event suggestions when primary inventory services are under load. Hardened for production with Resilience4j (Circuit Breakers, Rate Limiters, Retry mechanisms) and validated with Testcontainers achieving 90% code coverage.",

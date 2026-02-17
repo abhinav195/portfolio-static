@@ -11,7 +11,8 @@ export default function Home() {
   const [isContactOpen, setIsContactOpen] = useState(false);
 
   return (
-    <main className="min-h-screen bg-background flex flex-col pb-0">
+    // ADDED: "bg-grid-pattern" to apply the texture defined in globals.css
+    <main className="min-h-screen bg-background bg-grid-pattern flex flex-col pb-0 overflow-x-hidden">
       
       {/* Wrapped Hero in ID for "About" scrolling */}
       <div id="about">

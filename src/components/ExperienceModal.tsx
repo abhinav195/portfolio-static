@@ -165,22 +165,7 @@ export default function ExperienceModal({ isOpen, onClose }: ExperienceModalProp
                   </div>
                 ))}
 
-                {/* 2. EXTERNAL CERTIFICATIONS (Footer) */}
-                <div className="border-t border-card-border pt-8 mt-8">
-                      <h3 className="text-lg font-bold text-foreground flex items-center gap-2 mb-4">
-                         {/* CHANGED: text-neon-green -> text-accent */}
-                         <ScrollText className="text-accent" size={20} /> 
-                         Other Certifications
-                      </h3>
-                      <div className="flex flex-wrap gap-3">
-                         {CERTIFICATIONS_DATA.map((cert, idx) => (
-                            // CHANGED: bg-zinc-900 -> bg-transparent/bg-card, border-zinc-700 -> border-card-border
-                            <span key={idx} className="px-3 py-1.5 bg-foreground/5 border border-card-border rounded-full text-foreground/80 text-sm hover:border-accent hover:text-foreground transition-colors cursor-default">
-                                {cert}
-                            </span>
-                         ))}
-                      </div>
-                </div>
+                
 
               </div>
             </div>

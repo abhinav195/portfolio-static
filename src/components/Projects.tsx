@@ -14,22 +14,24 @@ export default function Projects() {
     <>
       <section className="max-w-7xl mx-auto p-4 md:p-8 mt-0 pt-0 mb-24">
         {/* HEADER */}
-        <h2 className="text-3xl md:text-5xl font-black mb-8 tracking-tighter uppercase">
+        <h2 className="text-4xl md:text-6xl font-black mb-12 tracking-tighter uppercase text-foreground">
           Architectural <span className="text-accent">Case Studies</span>
         </h2>
 
         {/* GRID SYSTEM */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
+        {/* Removed 'auto-rows-fr' so small cards don't stretch */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {projects.map((project, index) => {
-            // LAYOUT LOGIC MATCHING IMAGE1B8D2C
-            // Index 0 (TicketBlitz): Spans 2 cols, 2 rows → Big Left Block
-            // Index 1 (Library) + 2 (Parking): Will naturally stack in Col 3 Row 1 & 2
-            // Index 3, 4, 5: Will naturally flow to Row 3
+            
+            // --- LAYOUT LOGIC ---
             let gridClass = "";
             if (index === 0) {
+              // TicketBlitz: Big on Mobile & Desktop (Restored Original)
               gridClass = "md:col-span-2 md:row-span-2 min-h-[500px]";
             } else {
-              gridClass = "md:col-span-1 min-h-[250px]";
+              // Others: Compact (h-fit) on Mobile, Standard on Desktop
+              // This fixes the "empty black space" issue
+              gridClass = "md:col-span-1 h-fit md:h-full md:min-h-[250px]";
             }
 
             return (
@@ -38,25 +40,25 @@ export default function Projects() {
                 onClick={() => {
                   if (project.hasDeepDive) setSelectedId(project.id);
                 }}
-                className={`group relative bg-card border border-card-border rounded-3xl p-8 transition-all duration-300 flex flex-col justify-between ${
-                  project.hasDeepDive ? 'cursor-pointer hover:border-accent hover:shadow-lg hover:shadow-accent/5' : 'cursor-default'
+                className={`group relative bg-card border border-card-border rounded-[2rem] p-8 transition-all duration-300 flex flex-col justify-between overflow-hidden ${
+                  project.hasDeepDive ? 'cursor-pointer hover:border-accent hover:shadow-[0_0_30px_-5px_rgba(208,245,0,0.1)]' : 'cursor-default'
                 } ${gridClass}`}
               >
-                {/* Hover Icon Top Right - Only for clickable projects */}
+                {/* Hover Icon Top Right */}
                 {project.hasDeepDive && (
-                  <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                  <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 z-10">
                     <ArrowUpRight className="text-accent" size={32} />
                   </div>
                 )}
 
-                {/* TOP CONTENT */}
-                <div>
+                {/* --- TOP CONTENT --- */}
+                <div className="relative z-10">
                   {/* Tech Pills */}
                   <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tech.map((t) => (
+                    {project.tech.slice(0, 5).map((t) => (
                       <span
                         key={t}
-                        className="text-[10px] md:text-xs font-mono border border-gray-700 rounded-full px-2 py-1 text-gray-400 group-hover:text-accent group-hover:border-accent transition-colors"
+                        className="text-[10px] md:text-xs font-mono border border-card-border bg-background/50 backdrop-blur-sm rounded-full px-3 py-1 text-muted group-hover:text-accent group-hover:border-accent transition-colors"
                       >
                         {t}
                       </span>
@@ -64,46 +66,45 @@ export default function Projects() {
                   </div>
 
                   {/* Title + Category */}
-                  <h3 className="text-2xl md:text-3xl font-bold mb-2 group-hover:text-accent transition-colors">
+                  <h3 className="text-2xl md:text-3xl font-black mb-2 text-foreground group-hover:text-accent transition-colors leading-none tracking-tight">
                     {project.title}
                   </h3>
-                  <p className="text-accent font-mono text-xs uppercase tracking-widest mb-4">
+                  <p className="text-accent font-mono text-xs uppercase tracking-widest mb-4 font-bold">
                     {project.category}
                   </p>
 
                   {/* Description */}
-                  <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-6 max-w-lg">
+                  <p className="text-muted text-sm md:text-base leading-relaxed mb-6 max-w-lg font-medium">
                     {project.shortDescription}
                   </p>
 
-                  {/* ✅ DEMO GIFs - CENTERED VERTICALLY STACKED */}
+                  {/* ✅ RESTORED: VERTICALLY STACKED GIFs FOR TICKETBLITZ */}
                   {project.demoGifs && project.demoGifs.length > 0 && (
-                    <div className="flex flex-col items-center justify-center gap-[0.2rem] my-6">
+                    <div className="flex flex-col items-center justify-center gap-[0.5rem] my-6">
                       {project.demoGifs.map((gif, idx) => (
                         <img
                           key={idx}
                           src={gif}
                           alt={`${project.title} Demo ${idx + 1}`}
-                          className="w-full max-w-[550px] h-auto rounded-lg border border-card-border shadow-lg"
+                          className="w-full max-w-[550px] h-auto rounded-lg border border-card-border shadow-2xl opacity-90 group-hover:opacity-100 transition-opacity"
                         />
                       ))}
                     </div>
                   )}
                 </div>
 
-                {/* BOTTOM: Stats + Footer */}
-                <div>
-                  {/* STATS - Checkmarks */}
-                  {/* ✅ FIXED: 2 rows × 5 columns for 10 items */}
-                  <div className={`grid gap-2 border-t border-gray-800 pt-6 mb-6 ${
+                {/* --- BOTTOM CONTENT --- */}
+                <div className="mt-auto relative z-10">
+                  {/* STATS GRID - Restored Original Logic */}
+                  <div className={`grid gap-2 border-t border-card-border pt-6 mb-6 ${
                     project.stats.length === 10 
-                      ? 'grid-cols-5 grid-rows-2' 
+                      ? 'grid-cols-5 grid-rows-2' // TicketBlitz specific layout
                       : 'grid-cols-3'
                   }`}>
                     {project.stats.map((stat, i) => (
                       <div key={i} className="flex flex-col">
                         <span className="text-accent font-bold text-xs block mb-1">✓</span>
-                        <span className="text-[10px] md:text-xs text-foreground font-medium leading-tight">
+                        <span className="text-[10px] md:text-xs text-muted group-hover:text-foreground transition-colors font-medium leading-tight">
                           {stat}
                         </span>
                       </div>
@@ -111,28 +112,26 @@ export default function Projects() {
                   </div>
 
                   {/* FOOTER: GitHub + View Details */}
-                  <div className="flex items-center justify-between pt-4 border-t border-card-border">
-                    {/* GitHub Link */}
+                  <div className="flex items-center justify-between pt-2">
                     {project.repoUrl ? (
                       <a
                         href={project.repoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="flex items-center gap-2 text-sm font-mono uppercase tracking-widest text-gray-500 hover:text-accent transition-colors"
+                        className="flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-muted hover:text-accent transition-colors z-20"
                       >
                         <ExternalLink size={14} /> GITHUB
                       </a>
                     ) : (
-                      <span className="text-xs font-mono uppercase tracking-widest text-gray-600 opacity-40">
+                      <span className="text-xs font-mono uppercase tracking-widest text-muted/40">
                         PROPRIETARY
                       </span>
                     )}
 
-                    {/* View Details (only for deep dive projects) */}
                     {project.hasDeepDive && (
-                      <span className="text-xs font-mono uppercase tracking-widest text-accent">
-                        VIEW DETAILS →
+                      <span className="text-xs font-bold font-mono uppercase tracking-widest text-accent flex items-center gap-1">
+                        VIEW DETAILS <ArrowUpRight size={14} />
                       </span>
                     )}
                   </div>
